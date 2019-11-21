@@ -23,16 +23,16 @@ module.exports = {
   },
 
   addPerson: (req, res) => {
-    console.log(gs.summer(req.body))
+    // console.log(gs.summer(req.body))
     const {first_name, last_name, age, income, expenses, interest_rate} = req.body
     const personObj = {
-      first_name: first_name,
-      last_name,
-      age,
-      income,
-      expenses,
-      interest_rate,
       id: id++
+      ,first_name
+      ,last_name
+      ,age
+      ,income
+      ,expenses
+      ,interest_rate
     }
     people.push(personObj)
     res.status(201).send(people)
@@ -40,14 +40,30 @@ module.exports = {
 
   editPerson: (req, res) => {
     const {id} = req.params;
-    const {first_name, last_name, age, income, expenses, interest_rate} = req.body;
+    const {first_name, 
+        last_name, 
+        age, 
+        income, 
+        expenses, 
+        interest_rate} = req.body;
+    const index = people.findIndex( ele => ele.id === +id )
+    people[index].first_name = first_name
+    people[index].last_name = last_name
+    people[index].age = age
+    people[index].income = income
+    people[index].expenses = expenses
+    people[index].interest_rate = interest_rate
 
+    res.status(200).send(people)
 
   },
 
   deletePerson: (req, res) => {
     const {id} = req.params
-
+    const index = people.findIndex( ele => ele.id === +id)
+    people.splice(index,1)
+    
+    res.status(200).send(people)
   }
 
 
