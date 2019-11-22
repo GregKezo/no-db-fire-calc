@@ -7,7 +7,11 @@ const PersonName = (props) => {
       <span className="name-words"
         id={props.id}
         onClick={ (e) => props.activeFn(e.target.id)}
-      >{props.name}</span>
+      >
+        {props.name}
+      </span>
+      <button id={props.id} 
+        onClick={ e => props.deleteFn(e.target.id)}>Delete</button>
     </div>
   )
 }

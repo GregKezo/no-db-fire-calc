@@ -23,7 +23,7 @@ module.exports = {
   },
 
   addPerson: (req, res) => {
-    // console.log(gs.summer(req.body))
+    console.log(req.body)
     const { new_first_name, 
       new_last_name, 
       new_age, 
@@ -39,6 +39,7 @@ module.exports = {
       ,expenses: new_expenses
       ,interest_rate: new_interest_rate
     }
+    console.log(personObj)
     people.push(personObj)
     res.status(201).send(people)
   },

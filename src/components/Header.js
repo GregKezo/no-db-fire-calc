@@ -17,6 +17,7 @@ class Header extends Component {
         <h1>{this.state.name}</h1>
         <Menu people={this.props.people}
           activeFn = {this.props.activeFn}
+          deleteFn = {this.props.deleteFn}
           />
       </div>
     )

@@ -13,12 +13,12 @@ class App extends React.Component {
       people: [],
       activePerson: null,
       newPersonForm: true,
-      new_first_name: '', 
-      new_last_name: '', 
-      new_age: 0, 
-      new_income: 0, 
-      new_expenses: 0, 
-      new_interest_rate: 0
+      // new_first_name: '', 
+      // new_last_name: '', 
+      // new_age: 0, 
+      // new_income: 0, 
+      // new_expenses: 0, 
+      // new_interest_rate: 0
     }
   }
 
@@ -37,19 +37,30 @@ class App extends React.Component {
     }) 
   }
 
-  createPerson = (fname, lname, age, inc, exp, ir) => {
-    axios.post('api/people').then( res => {
+  createPerson = () => {
+    const body = this.state 
+    axios.post('api/people', body).then( res => {
       this.setState({ people: res.data })
+          //todo do api query to set active person to be the person you just made.
+    })
+    .catch( err => console.log(err))
+
+  }
+
+  deletePerson = (id) => {
+    axios.delete(`api/people/${id}`).then( res => {
+      this.setState({ people: res.data, newPersonForm: true })
     })
     .catch( err => console.log(err))
   }
 
-  handleUpdate = (iden, val) => {
-    let property = iden
+  handleUpdate = (e) => {
+    let {name, value} = e.target
     this.setState({
-      property : val
+      [name] : value
     })
   }
+
 
   render() {
     if (this.state.newPersonForm) {
@@ -57,6 +68,7 @@ class App extends React.Component {
         <div className="App">
           <Header people={this.state.people}
             activeFn = {this.activator}
+            deleteFn = {this.deletePerson}
           />
           <NewPersonCard 
           createFn={this.createPerson} 
@@ -69,8 +81,10 @@ class App extends React.Component {
         <div className="App">
           <Header people={this.state.people}
             activeFn = {this.activator}
+            deleteFn = {this.deletePerson}
           />
           <Body person={this.state.activePerson} 
+          handleFn={this.handleUpdate}
           />
         </div> 
         )

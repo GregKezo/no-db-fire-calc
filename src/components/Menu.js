@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PersonName from './PersonName'
-import axios from 'axios'
+
 
 class Menu extends Component {
   constructor(props){
@@ -22,6 +22,7 @@ class Menu extends Component {
               name={`${ele.first_name} ${ele.last_name}`} 
               id={ele.id}
               activeFn = {this.props.activeFn}
+              deleteFn = {this.props.deleteFn}
               />
           )
         })}

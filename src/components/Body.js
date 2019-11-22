@@ -19,10 +19,8 @@ class Body extends Component {
     this.setState({ toggleEdit: !this.state.toggleEdit})
   }
 
-
-
   render() {
-    let { id, first_name, last_name, income, expenses, age} = this.props.person[0]
+    let { id, first_name, last_name, income, expenses, age, interest_rate} = this.props.person[0]
     return ( 
       <div>
       <h1>Body Component</h1>
@@ -33,7 +31,10 @@ class Body extends Component {
         income={income}
         expenses={expenses}
         age={age}
+        interest_rate={interest_rate}
+        toggleEdit = {this.state.toggleEdit}
         editFn= {this.editClick}
+        handleFn = {this.props.handleFn}
         />
       <Graph />
       <Table />
