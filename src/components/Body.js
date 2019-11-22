@@ -35,6 +35,7 @@ class Body extends Component {
         toggleEdit = {this.state.toggleEdit}
         editFn= {this.editClick}
         handleFn = {this.props.handleFn}
+        updateFn = {this.props.updateFn}
         />
       <Graph />
       <Table />

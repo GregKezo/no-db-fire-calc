@@ -61,6 +61,13 @@ class App extends React.Component {
     })
   }
 
+  updatePerson = (id) => {
+    const body = this.state
+    axios.put(`api/people/${id}`, body).then( res => {
+      this.setState({people:res.data })
+      this.activator(id)
+    })
+  }
 
   render() {
     if (this.state.newPersonForm) {
@@ -85,6 +92,7 @@ class App extends React.Component {
           />
           <Body person={this.state.activePerson} 
           handleFn={this.handleUpdate}
+          updateFn={this.updatePerson}
           />
         </div> 
         )

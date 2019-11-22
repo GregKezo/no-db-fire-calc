@@ -19,7 +19,12 @@ const PersonCard = (props) => {
         <input name="new_income" onChange={ e => props.handleFn(e)} placeholder={props.income}/>
         <input name="new_expenses" onChange={ e => props.handleFn(e)} placeholder={props.expenses}/>
         <input name="new_interest_rate" onChange={ e => props.handleFn(e)} placeholder={props.interest_rate}/>
-        <button>Save Changes</button>
+        <button id={props.id} onClick={e => {
+            props.updateFn(e.target.id)
+            props.editFn()
+          }
+        }
+        >Save Changes</button>
       </div>
     )
   }
