@@ -18,8 +18,19 @@ const gs = require('gradient-string')
 module.exports = {
 
   getPeople: (req, res) => {
+    let result = people
+    if(req.query.first_name) {
+      result = result.filter( person => {
+        return person.first_name.includes(req.query.first_name)
+      })
+    }
+    if(req.query.last_name) {
+      result = result.filter( person => {
+        return person.last_name.includes(req.query.last_name)
+      })
+    }
     // console.log(gs.cristal(res))
-    res.status(200).send(people)
+    res.status(200).send(result)
   },
 
   addPerson: (req, res) => {
