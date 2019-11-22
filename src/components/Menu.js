@@ -14,7 +14,7 @@ class Menu extends Component {
   render() {
     return(
       <div className="menu-container">
-        <h1>{this.state.name}</h1>
+        <button onClick={this.props.newPersonFn}>New Person</button>
         {this.props.people.map( ele => {
           return(
             <PersonName 

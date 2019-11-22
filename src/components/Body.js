@@ -9,15 +9,11 @@ class Body extends Component {
   constructor(props){
     super(props)
     this.state = {
-      toggleEdit: false,
 
     }
-    this.editClick = this.editClick.bind(this)
   }
 
-  editClick() {
-    this.setState({ toggleEdit: !this.state.toggleEdit})
-  }
+ 
 
   render() {
     let { id, first_name, last_name, income, expenses, age, interest_rate} = this.props.person[0]
@@ -32,10 +28,10 @@ class Body extends Component {
         expenses={expenses}
         age={age}
         interest_rate={interest_rate}
-        toggleEdit = {this.state.toggleEdit}
-        editFn= {this.editClick}
+        editFn= {this.props.editFn}
         handleFn = {this.props.handleFn}
         updateFn = {this.props.updateFn}
+        toggleEdit= {this.props.toggleEdit}
         />
       <Graph />
       <Table />

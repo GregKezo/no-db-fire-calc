@@ -13,6 +13,7 @@ class App extends React.Component {
       people: [],
       activePerson: null,
       newPersonForm: true,
+      toggleEdit: false
       // new_first_name: '', 
       // new_last_name: '', 
       // new_age: 0, 
@@ -33,8 +34,14 @@ class App extends React.Component {
     let peopleObj = this.state.people.filter( ele => ele.id === +id)
     this.setState({
       activePerson: peopleObj, 
-      newPersonForm: false
+      newPersonForm: false,
+      toggleEdit: false
+
     }) 
+  }
+
+  toggleNewPerson = () => {
+    this.setState({ newPersonForm: true})
   }
 
   createPerson = () => {
@@ -61,42 +68,43 @@ class App extends React.Component {
     })
   }
 
+  editClick = () => {
+    this.setState({ toggleEdit: !this.state.toggleEdit})
+  }
+
   updatePerson = (id) => {
     const body = this.state
     axios.put(`api/people/${id}`, body).then( res => {
       this.setState({people:res.data })
       this.activator(id)
+      this.setState({})
     })
   }
 
   render() {
-    if (this.state.newPersonForm) {
-      return (
-        <div className="App">
-          <Header people={this.state.people}
-            activeFn = {this.activator}
-            deleteFn = {this.deletePerson}
+    return(
+    <div className="App">
+      <Header 
+        people={this.state.people}
+        activeFn = {this.activator}
+        deleteFn = {this.deletePerson}
+        newPersonFn = {this.toggleNewPerson}
+      />
+      {this.state.newPersonForm
+        ? <NewPersonCard 
+            createFn={this.createPerson} 
+            handleFn={this.handleUpdate}
           />
-          <NewPersonCard 
-          createFn={this.createPerson} 
-          handleFn={this.handleUpdate}
+        : <Body 
+            person={this.state.activePerson} 
+            handleFn={this.handleUpdate}
+            updateFn={this.updatePerson}
+            editFn={this.editClick}
+            toggleEdit={this.state.toggleEdit}
           />
-        </div>   
-      )
-    } else {
-        return (
-        <div className="App">
-          <Header people={this.state.people}
-            activeFn = {this.activator}
-            deleteFn = {this.deletePerson}
-          />
-          <Body person={this.state.activePerson} 
-          handleFn={this.handleUpdate}
-          updateFn={this.updatePerson}
-          />
-        </div> 
-        )
-    }
+      }
+    </div>
+    )
   }
     
 }

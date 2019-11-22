@@ -23,7 +23,7 @@ module.exports = {
   },
 
   addPerson: (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const { new_first_name, 
       new_last_name, 
       new_age, 
@@ -39,7 +39,7 @@ module.exports = {
       ,expenses: new_expenses
       ,interest_rate: new_interest_rate
     }
-    console.log(personObj)
+    // console.log(personObj)
     people.push(personObj)
     res.status(201).send(people)
   },
@@ -56,12 +56,12 @@ module.exports = {
         } = req.body;
     const index = people.findIndex( ele => ele.id === +id )
     if (index === -1) res.status(404).send('could not find matching person')
-    people[index].first_name = new_first_name
-    people[index].last_name = new_last_name
-    people[index].age = new_age
-    people[index].income = new_income
-    people[index].expenses = new_expenses
-    people[index].interest_rate = new_interest_rate
+    people[index].first_name = new_first_name || people[index].first_name
+    people[index].last_name = new_last_name || people[index].last_name
+    people[index].age = new_age || people[index].age
+    people[index].income = new_income || people[index].income
+    people[index].expenses = new_expenses || people[index].expenses
+    people[index].interest_rate = new_interest_rate || people[index].interest_rate
 
     res.status(200).send(people)
 
