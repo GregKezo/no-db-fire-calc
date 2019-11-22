@@ -23,12 +23,12 @@ class Menu extends Component {
     // this.props.activeFn()
   }
 
-  handleChange = (e) => {
-    let {name, value} = e.target
-    this.setState({
-      [name]: value
-    })
-  }
+  // handleChange = (e) => {
+  //   let {name, value} = e.target
+  //   this.setState({
+  //     [name]: value
+  //   })
+  // }
 
   render() {
     return(
@@ -37,13 +37,13 @@ class Menu extends Component {
         Find person: 
         First:<input 
           name= "first_name" 
-          onChange={ e => this.handleChange(e) }
+          onChange={ e => this.props.handleFn(e) }
           /> 
         Last:<input 
           name= "last_name"
-          onChange={ e => this.handleChange(e) }
+          onChange={ e => this.props.handleFn(e) }
           />
-          <button onClick={this.handleSearch}>Search</button>
+          <button onClick={this.props.searchFn}>Search</button>
         {!this.state.results
           ? this.props.people.map( ele => {
           return(

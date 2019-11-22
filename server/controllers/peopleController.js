@@ -19,6 +19,7 @@ module.exports = {
 
   getPeople: (req, res) => {
     let result = people
+    console.log(req.body, req.query)
     if(req.query.first_name) {
       result = result.filter( person => {
         return person.first_name.includes(req.query.first_name)

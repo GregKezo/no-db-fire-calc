@@ -25,6 +25,8 @@ class Header extends Component {
           activeFn = {this.props.activeFn}
           deleteFn = {this.props.deleteFn}
           newPersonFn = {this.props.newPersonFn}
+          handleFn = {this.props.handleFn}
+          searchFn = {this.props.searchFn}
           />
         : <div>emptiness</div>
         }

@@ -13,7 +13,9 @@ class App extends React.Component {
       people: [],
       activePerson: null,
       newPersonForm: true,
-      toggleEdit: false
+      toggleEdit: false,
+      first_name: '',
+      last_name: ''
       // new_first_name: '', 
       // new_last_name: '', 
       // new_age: 0, 
@@ -81,6 +83,15 @@ class App extends React.Component {
     })
   }
 
+  handleSearch = () => {
+    let {first_name, last_name} = this.state
+    axios.get(`/api/people?first_name=${first_name}&last_name=${last_name}`).then( res => {
+      this.setState({ people: res.data})
+    })
+    .catch(err => console.log(err))
+
+  }
+
   render() {
     return(
     <div className="App">
@@ -89,6 +100,8 @@ class App extends React.Component {
         activeFn = {this.activator}
         deleteFn = {this.deletePerson}
         newPersonFn = {this.toggleNewPerson}
+        handleFn = {this.handleUpdate}
+        searchFn = {this.handleSearch}
       />
       {this.state.newPersonForm
         ? <NewPersonCard 
