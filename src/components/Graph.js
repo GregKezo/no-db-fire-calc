@@ -14,19 +14,21 @@ componentDidUpdate() {
     type: 'line',
     data: {
         datasets: [{
-            label: 'First dataset',
+            label: 'Savings',
             data: this.props.savingsArr
         },{
-
+            label: 'Interest Earned',
+            data: this.props.intEarnedArr
         }],
-        labels: this.props.yearsArr
+        labels: this.props.yearsArr 
     },
     options: {
         scales: {
             yAxes: [{
+                type: 'linear',
                 ticks: {
                     // suggestedMin: 50,
-                    // suggestedMax: 100000
+                    // suggestedMax: 1000000
                 }
             }]
         }
@@ -39,7 +41,7 @@ componentDidUpdate() {
 render() {
   
   return(
-    <section className="graph">
+    <section className="graph new-person-form">
       <canvas id="myChart" width="400" height="400">
 
       </canvas>
