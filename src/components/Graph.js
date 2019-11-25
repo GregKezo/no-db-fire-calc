@@ -1,5 +1,6 @@
 import React from 'react'
 import Chart from 'chart.js'
+import { white } from 'ansi-colors';
 
 class Graph extends React.Component {
   constructor(props){
@@ -13,16 +14,22 @@ componentDidUpdate() {
   let chart = new Chart(ctx, {
     type: 'line',
     data: {
-        datasets: [{
-            label: 'Savings',
-            data: this.props.savingsArr
-        },{
+        datasets: [
+        //   {
+        //     label: 'Savings',
+        //     data: this.props.savingsArr
+        // },
+        {
             label: 'Interest Earned',
             data: this.props.intEarnedArr
+        },{
+          label: 'Expenses',
+          data: this.props.expensesArr
         }],
         labels: this.props.yearsArr 
     },
     options: {
+      backgroundColor: `rgba(0,0,0,0.9)`,
         scales: {
             yAxes: [{
                 type: 'linear',
@@ -42,7 +49,7 @@ render() {
   
   return(
     <section className="graph new-person-form">
-      <canvas id="myChart" width="400" height="400">
+      <canvas id="myChart" >
 
       </canvas>
 

@@ -16,15 +16,11 @@ class App extends React.Component {
       toggleEdit: false,
       first_name: '',
       last_name: ''
-      // new_first_name: '', 
-      // new_last_name: '', 
-      // new_age: 0, 
-      // new_income: 0, 
-      // new_expenses: 0, 
-      // new_interest_rate: 0
     }
   }
 
+
+  
   componentDidMount() {
     axios.get('/api/people').then( (res) => {
       this.setState({ people: res.data })

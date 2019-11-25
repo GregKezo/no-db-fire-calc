@@ -22,12 +22,12 @@ module.exports = {
     // console.log(req.body, req.query)
     if(req.query.first_name) {
       result = result.filter( person => {
-        return person.first_name.includes(req.query.first_name)
+        return person.first_name.toLowerCase().includes(req.query.first_name)
       })
     }
     if(req.query.last_name) {
       result = result.filter( person => {
-        return person.last_name.includes(req.query.last_name)
+        return person.last_name.toLowerCase.includes(req.query.last_name)
       })
     }
     // console.log(gs.cristal(res))

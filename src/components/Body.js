@@ -26,7 +26,7 @@ class Body extends Component {
     let tableData = []
     let rowData = []
     totalSaved = 0
-    for ( let year = 1; year <= 10; ++year) {
+    for ( let year = 1; year <= 30; ++year) {
       let cell1 = year;
       let cell2 = +(totalSaved + savingsAmt).toFixed(2)
       let cell3 = +(cell2 * interestRate).toFixed(2)
@@ -52,8 +52,9 @@ class Body extends Component {
     const savingsArr = []
     const intEarnedArr = []
     const totalArr =[]
+    const expensesArr = []
      totalSaved = 0
-    for ( let year = 1; year <= 10; ++year) {
+    for ( let year = 1; year <= 30; ++year) {
       let cell1 = year;
       let cell2 = (totalSaved + savingsAmt)
       let cell3 = (cell2 * interestRate)
@@ -62,13 +63,15 @@ class Body extends Component {
       savingsArr.push(cell2.toFixed(2))
       intEarnedArr.push(cell3.toFixed(2))
       totalArr.push(cell4.toFixed(2))
+      expensesArr.push(expenses)
       totalSaved= cell4
     }
     this.setState({
       yearsArr: yearsArr,
       savingsArr: savingsArr,
       intEarnedArr: intEarnedArr,
-      totalArr: totalArr
+      totalArr: totalArr,
+      expensesArr: expensesArr
     })
   }
 
@@ -78,13 +81,14 @@ componentDidMount() {
   this.arrMaker()    
 }
 
-// componentDidUpdate(prevProps, prevState) {
-//   if(this.state.savingsArr !== prevState.savingsArr) {
-//     this.tableMaker()
-//     this.arrMaker()
-//   }
+componentDidUpdate(prevProps, prevState) {
+  if(this.props.person !== prevProps.person) {
+    console.log(this.props.person, prevProps.person)
+    this.tableMaker()
+    this.arrMaker()
+  }
 
-// }
+}
 
 
 
@@ -111,8 +115,9 @@ componentDidMount() {
         savingsArr={this.state.savingsArr}
         intEarnedArr={this.state.intEarnedArr}
         totalArr={this.state.totalArr}
+        expensesArr={this.state.expensesArr}
         />
-      <Table />
+      {/* <Table /> */}
     </div>      
     ) 
   }    
