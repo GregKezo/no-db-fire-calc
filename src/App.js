@@ -38,8 +38,8 @@ class App extends React.Component {
       activePerson: peopleObj, 
       newPersonForm: false,
       toggleEdit: false
-
     }) 
+    
   }
 
   toggleNewPerson = () => {
@@ -49,9 +49,10 @@ class App extends React.Component {
   createPerson = () => {
     const body = this.state 
     axios.post('api/people', body).then( res => {
+      console.log(res.data)
       this.setState({ people: res.data })
-          //todo do api query to set active person to be the person you just made.
     })
+    //// add a .next() to get the biggest id and display that in activator()
     .catch( err => console.log(err))
 
   }
@@ -89,6 +90,7 @@ class App extends React.Component {
       this.setState({ people: res.data})
     })
     .catch(err => console.log(err))
+
 
   }
 

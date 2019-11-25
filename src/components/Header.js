@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import Menu from './Menu'
+import {Button, Icon} from '@material-ui/core'
+
 
 
 
@@ -15,11 +17,26 @@ class Header extends Component {
     this.setState({ toggleMenu: !this.state.toggleMenu})
   }
 
+  activeFn = (props) => {
+    console.log(`hit activeFn`)
+    this.setState({
+      toggleMenu: !this.state.toggleMenu
+    })
+  }
+
   render(){
     return(
       <header className="header">
-        <div className="logo">Logo</div>
-        <button onClick={this.handleMenu}>hamburger</button>
+        <div></div>
+        <div className="logo">FI in the Sky</div>
+          <div className="move-it"><Button 
+            onClick={this.handleMenu}
+            variant="contained"
+            color="default"
+          >
+            <Icon>menu</Icon>
+          </Button>
+          </div>
         {this.state.toggleMenu
         ? <Menu people={this.props.people}
           activeFn = {this.props.activeFn}
@@ -28,7 +45,7 @@ class Header extends Component {
           handleFn = {this.props.handleFn}
           searchFn = {this.props.searchFn}
           />
-        : <div>emptiness</div>
+        : <div className="nope">div</div>
         }
       </header>
     )
