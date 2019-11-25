@@ -29,13 +29,14 @@ class Header extends Component {
       <header className="header">
         <div></div>
         <div className="logo">FI in the Sky</div>
-          <div className="move-it"><Button 
-            onClick={this.handleMenu}
-            variant="contained"
-            color="default"
-          >
-            <Icon>menu</Icon>
-          </Button>
+          <div className="move-it">
+            <Button 
+              onClick={this.handleMenu}
+              variant="contained"
+              color="default"
+            >
+              <Icon>menu</Icon>
+            </Button>
           </div>
         {this.state.toggleMenu
         ? <Menu people={this.props.people}

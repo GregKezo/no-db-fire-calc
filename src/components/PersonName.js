@@ -10,12 +10,14 @@ const PersonName = (props) => {
         onClick={ (e) => props.activeFn(e.target.id)
         }
       >
-        {props.name} 
+       <span className="name" 
+       id={props.id}
+       onClick={ (e) => props.activeFn(e.target.id)} >{props.name} </span> 
       </div>
-      <Button name={props.id} 
-        onClick={ e => props.deleteFn(e.target.name)}>
-          <Icon>delete</Icon>
-      </Button>
+      <button id={props.id} 
+        onClick={ e => props.deleteFn(e.target.id)}>
+          Delete
+      </button>
     </div>
   )
 }

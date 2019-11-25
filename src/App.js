@@ -76,6 +76,7 @@ class App extends React.Component {
   }
 
   updatePerson = (id) => {
+    console.log(`hit update for ${id}`)
     const body = this.state
     axios.put(`api/people/${id}`, body).then( res => {
       this.setState({people:res.data })
