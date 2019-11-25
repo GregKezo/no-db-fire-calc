@@ -3,10 +3,10 @@ import Chart from 'chart.js'
 import { white } from 'ansi-colors';
 
 class Graph extends React.Component {
-  constructor(props){
-    super(props)
+  // constructor(props){
+  //   super(props)
     
-  }
+  // }
 
 componentDidUpdate() {
 

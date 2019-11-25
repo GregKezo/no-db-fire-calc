@@ -22,12 +22,12 @@ module.exports = {
     // console.log(req.body, req.query)
     if(req.query.first_name) {
       result = result.filter( person => {
-        return person.first_name.toLowerCase().includes(req.query.first_name)
+        return person.first_name.toLowerCase().includes(req.query.first_name.toLowerCase())
       })
     }
     if(req.query.last_name) {
       result = result.filter( person => {
-        return person.last_name.toLowerCase.includes(req.query.last_name)
+        return person.last_name.toLowerCase.includes(req.query.last_name.toLowerCase())
       })
     }
     // console.log(gs.cristal(res))
@@ -88,9 +88,9 @@ module.exports = {
     res.status(200).send(people)
   },
 
-  findPerson: (req, res) => {
-    //something with the query stuff?
-  }
+  // findPerson: (req, res) => {
+  //   //something with the query stuff?
+  // }
 
 
 
